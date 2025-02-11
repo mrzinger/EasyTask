@@ -20,9 +20,18 @@ namespace EasyTaskAddin.Tests
         public void ParseTodayKeywordTest()
         {
             DueDateProcessorWrapper dueDateProcessor = new DueDateProcessorWrapper();
-            DateTime testDate = DateTime.Now;
+            DateTime testDate = DateTime.Today;
             dueDateProcessor.ParseKeywordsToDateWrapper("Today", out testDate);
-            Assert.AreEqual(testDate.ToLongDateString(), DateTime.Now.ToLongDateString());
+            Assert.AreEqual(testDate.ToLongDateString(), DateTime.Today.ToLongDateString());
+        }
+
+        private bool wAssert (DayOfWeek dow, DateTime date, int startDay) 
+        {
+            var todayDOW = DateTime.Today.DayOfWeek == DayOfWeek.Sunday ? 7 : (int)DateTime.Today.DayOfWeek;
+            var intDow = dow == DayOfWeek.Sunday ? 7 : (int)dow;
+            Assert.AreEqual(dow, date.DayOfWeek);
+            Assert.IsTrue(date.Subtract(DateTime.Today).Days == (startDay + intDow - todayDOW));
+            return true;
         }
 
         [TestMethod()]
@@ -30,39 +39,31 @@ namespace EasyTaskAddin.Tests
         {
             DueDateProcessorWrapper dueDateProcessor = new DueDateProcessorWrapper();
 
-            
-            DateTime testDate = DateTime.Now;
-        
-           /* dueDateProcessor.ParseKeywordsToDateWrapper("next week", out testDate);
-            Assert.AreEqual(DateTime.Now.AddDays(7).ToLongDateString(), testDate.ToLongDateString());
+            DateTime testDate = DateTime.Today;
+         
+            dueDateProcessor.ParseKeywordsToDateWrapper("New Task to do next Monday", out testDate);
+            wAssert(DayOfWeek.Monday, testDate, 7);
 
-            dueDateProcessor.ParseKeywordsToDateWrapper("next Monday", out testDate);
-            Assert.AreEqual(DayOfWeek.Monday, testDate.DayOfWeek);
-            Assert.IsTrue(testDate.Subtract (DateTime.Now).Days < 14);
+            dueDateProcessor.ParseKeywordsToDateWrapper("New Task to do Next Tuesday", out testDate);
+            wAssert(DayOfWeek.Tuesday, testDate, 7);
 
-            dueDateProcessor.ParseKeywordsToDateWrapper("Next Tuesday", out testDate);
-            Assert.AreEqual(DayOfWeek.Tuesday, testDate.DayOfWeek);
-            Assert.IsTrue(testDate.Subtract(DateTime.Now).Days < 14);
+            dueDateProcessor.ParseKeywordsToDateWrapper("New Task to do Next WednesdaY", out testDate);
+            wAssert(DayOfWeek.Wednesday, testDate, 7);
 
-            dueDateProcessor.ParseKeywordsToDateWrapper("Next WednesdaY", out testDate);
-            Assert.AreEqual(DayOfWeek.Wednesday, testDate.DayOfWeek);
-            Assert.IsTrue(testDate.Subtract(DateTime.Now).Days < 14);
+            dueDateProcessor.ParseKeywordsToDateWrapper("New Task to do  next  thursday", out testDate);
+            wAssert(DayOfWeek.Thursday, testDate, 7);
 
-            dueDateProcessor.ParseKeywordsToDateWrapper("next  thursday", out testDate);
-            Assert.AreEqual(DayOfWeek.Thursday, testDate.DayOfWeek);
-            Assert.IsTrue(testDate.Subtract(DateTime.Now).Days < 14);
+            dueDateProcessor.ParseKeywordsToDateWrapper("New Task to do  neXt frIdAy", out testDate);
+            wAssert(DayOfWeek.Friday, testDate, 7);
 
-            dueDateProcessor.ParseKeywordsToDateWrapper("neXt frIdAy", out testDate);
-            Assert.AreEqual(DayOfWeek.Friday, testDate.DayOfWeek);
-            Assert.IsTrue(testDate.Subtract(DateTime.Now).Days < 14);
+            dueDateProcessor.ParseKeywordsToDateWrapper("New Task to do neXt Saturday", out testDate);
+            wAssert(DayOfWeek.Saturday, testDate, 7);
 
-            dueDateProcessor.ParseKeywordsToDateWrapper("neXt Saturday", out testDate);
-            Assert.AreEqual(DayOfWeek.Saturday, testDate.DayOfWeek);
-            Assert.IsTrue(testDate.Subtract(DateTime.Now).Days < 14);
+            dueDateProcessor.ParseKeywordsToDateWrapper("New Task to do NeXt sunday", out testDate);
+            wAssert(DayOfWeek.Sunday, testDate, 7);
 
-            dueDateProcessor.ParseKeywordsToDateWrapper("NeXt sunday", out testDate);
-            Assert.AreEqual(DayOfWeek.Sunday, testDate.DayOfWeek);
-            Assert.IsTrue(testDate.Subtract(DateTime.Now).Days < 14);*/
+            dueDateProcessor.ParseKeywordsToDateWrapper("New Task to do next week", out testDate);
+            wAssert(DayOfWeek.Sunday, testDate, 7);
 
         }
 
@@ -71,41 +72,54 @@ namespace EasyTaskAddin.Tests
         {
             DueDateProcessorWrapper dueDateProcessor = new DueDateProcessorWrapper();
 
-            DateTime testDate = DateTime.Now;
+            DateTime testDate = DateTime.Today;
+            
+            var dow = (int)DateTime.Today.DayOfWeek;
 
-            dueDateProcessor.ParseKeywordsToDateWrapper("this week", out testDate);
-            Assert.AreEqual(DayOfWeek.Sunday, testDate.DayOfWeek);
-            Assert.IsTrue(testDate.Subtract(DateTime.Now).Days < 7);
+            dueDateProcessor.ParseKeywordsToDateWrapper("New Task to do this week", out testDate);
+            wAssert(DayOfWeek.Sunday, testDate, 0);
 
-            dueDateProcessor.ParseKeywordsToDateWrapper("this Monday", out testDate);
-            Assert.AreEqual(DayOfWeek.Monday, testDate.DayOfWeek);
-            Assert.IsTrue(testDate.Subtract(DateTime.Now).Days < 7);
+            dueDateProcessor.ParseKeywordsToDateWrapper("New Task to do this Monday", out testDate);
+            wAssert(DayOfWeek.Monday, testDate, 0);
 
-            dueDateProcessor.ParseKeywordsToDateWrapper("this Tuesday", out testDate);
-            Assert.AreEqual(DayOfWeek.Tuesday, testDate.DayOfWeek);
-            Assert.IsTrue(testDate.Subtract(DateTime.Now).Days < 7);
+            dueDateProcessor.ParseKeywordsToDateWrapper("New Task to do this Tuesday", out testDate);
+            wAssert(DayOfWeek.Tuesday, testDate, 0);
+            dueDateProcessor.ParseKeywordsToDateWrapper("New Task to do Tue", out testDate);
+            wAssert(DayOfWeek.Tuesday, testDate, 0);
 
-            dueDateProcessor.ParseKeywordsToDateWrapper("this WednesdaY", out testDate);
-            Assert.AreEqual(DayOfWeek.Wednesday, testDate.DayOfWeek);
-            Assert.IsTrue(testDate.Subtract(DateTime.Now).Days < 7);
+            dueDateProcessor.ParseKeywordsToDateWrapper("New Task to do this WednesdaY", out testDate);
+            wAssert(DayOfWeek.Wednesday, testDate, 0);
 
-            dueDateProcessor.ParseKeywordsToDateWrapper("this thursday", out testDate);
-            Assert.AreEqual(DayOfWeek.Thursday, testDate.DayOfWeek);
-            Assert.IsTrue(testDate.Subtract(DateTime.Now).Days < 7);
+            dueDateProcessor.ParseKeywordsToDateWrapper("New Task to do this thursday", out testDate);
+            wAssert(DayOfWeek.Thursday, testDate, 0);
 
-            dueDateProcessor.ParseKeywordsToDateWrapper("this frIdAy", out testDate);
-            Assert.AreEqual(DayOfWeek.Friday, testDate.DayOfWeek);
-            Assert.IsTrue(testDate.Subtract(DateTime.Now).Days < 7);
+            dueDateProcessor.ParseKeywordsToDateWrapper("New Task to do this frIdAy", out testDate);
+            wAssert (DayOfWeek.Friday, testDate, 0);
 
-            dueDateProcessor.ParseKeywordsToDateWrapper("this Saturday", out testDate);
-            Assert.AreEqual(DayOfWeek.Saturday, testDate.DayOfWeek);
-            Assert.IsTrue(testDate.Subtract(DateTime.Now).Days < 7);
+            dueDateProcessor.ParseKeywordsToDateWrapper("New Task to do this Saturday", out testDate);
+            wAssert(DayOfWeek.Saturday, testDate, 0);
 
-            dueDateProcessor.ParseKeywordsToDateWrapper("ThiS  sunday", out testDate);
-            Assert.AreEqual(DayOfWeek.Sunday, testDate.DayOfWeek);
-            Assert.IsTrue(testDate.Subtract(DateTime.Now).Days < 7);
+            dueDateProcessor.ParseKeywordsToDateWrapper("New Task to do ThiS  sunday", out testDate);
+            wAssert(DayOfWeek.Sunday, testDate, 0);
 
         }
-      
+
+        [TestMethod()]
+        public void TestParseDate()
+        {
+            DueDateProcessorWrapper dueDateProcessor = new DueDateProcessorWrapper();
+            DateTime testDate = DateTime.Today;
+
+            dueDateProcessor.ParseKeywordsToDateWrapper("New Task to do 2020-12-31", out testDate);
+            Assert.AreEqual(testDate.ToLongDateString(), "Thursday, December 31, 2020");
+
+            dueDateProcessor.ParseKeywordsToDateWrapper("New Task to do 12 of Feb", out testDate);
+            Assert.AreEqual(testDate.ToShortDateString(), $"2/12/{DateTime.Today.Year}");
+
+            dueDateProcessor.ParseKeywordsToDateWrapper("New Task to do first of December", out testDate);
+            Assert.AreEqual(testDate.ToShortDateString(), $"12/1/{DateTime.Today.Year}");
+
+        }
+
     }
 }

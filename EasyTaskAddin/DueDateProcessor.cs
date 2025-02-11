@@ -20,11 +20,11 @@ namespace EasyTaskAddin
 
         public Outlook.TaskItem ParseAndSetDueDate(Outlook.TaskItem taskItem)
         {
-            var parsedDate = DateTime.Now;
+            var parsedDate = DateTime.Today;
             HitPosition hitPosition = null;
             if (ParseKeywordsToDate(taskItem.Subject, out parsedDate, out hitPosition) == true)
             {
-                if (parsedDate < DateTime.Now)  //we cannot assing duedate in the past
+                if (parsedDate < DateTime.Today)  //we cannot assing duedate in the past
                     return taskItem;
 
                 if (!taskItem.DueDate.Equals(parsedDate))
@@ -60,12 +60,12 @@ namespace EasyTaskAddin
                 if (subType.Contains("date") && !subType.Contains("range"))
                 {
                     // a date (or date & time) or multiple
-                    parsedDate = resolutionValues.Select(v => DateTime.Parse(v["value"])).FirstOrDefault();
+                    parsedDate = resolutionValues.Select(v => DateTime.Parse(v["value"])).LastOrDefault();
                     return true;
                 }
                 else if (subType.Contains("date") && subType.Contains("range"))
                 {
-                    // We subtract one day in order to land on the last day of the month/week/year                    
+                    // We subtract one day in order to land on the last day of the month/week/year             
                     parsedDate = DateTime.Parse(resolutionValues.First()["end"]).AddDays(-1);
 
                     return true;
@@ -78,7 +78,7 @@ namespace EasyTaskAddin
                 Length = 0
             };
 
-            parsedDate = DateTime.Now;
+            parsedDate = DateTime.Today;
 
             return false;
         }
