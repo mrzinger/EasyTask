@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Directory Id="dir39B22699688E51DCD8DCBB99A47E835B" Name="Debug" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir39B22699688E51DCD8DCBB99A47E835B">
+            <Component Id="cmp7EB6A79132B1CAB6AF401FAEDF461CC6" Guid="*">
+                <Class Id="{1E8EE634-77A3-348D-BA54-961DBCCAC3A6}" Context="InprocServer32" Description="EasyTaskAddin.DueDateProcessor" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="EasyTaskAddin.DueDateProcessor" Description="EasyTaskAddin.DueDateProcessor" />
+                </Class>
+                <Class Id="{509DC54F-081E-410D-A096-A875AFA66FC0}" Context="InprocServer32" Description="EasyTaskAddin.Addin" ThreadingModel="both" Programmable="yes" ForeignServer="mscoree.dll">
+                    <ProgId Id="EasyTask.Addin" Description="EasyTaskAddin.Addin" />
+                </Class>
+                <Class Id="{6D6BB2F9-3DCB-320E-B861-414AF1D171FC}" Context="InprocServer32" Description="EasyTaskAddin.SettingsForm" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="EasyTaskAddin.SettingsForm" Description="EasyTaskAddin.SettingsForm" />
+                </Class>
+                <Class Id="{824DB34C-BAA5-34D8-9CF3-71443BE56C14}" Context="InprocServer32" Description="EasyTaskAddin.CategoryProcessor" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="EasyTaskAddin.CategoryProcessor" Description="EasyTaskAddin.CategoryProcessor" />
+                </Class>
+                <Class Id="{ECC8AB9D-7EE6-3606-BFEA-97540DD5B835}" Context="InprocServer32" Description="EasyTaskAddin.DueDateProcessor+HitPosition" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="EasyTaskAddin.DueDateProcessor+HitPosition" Description="EasyTaskAddin.DueDateProcessor+HitPosition" />
+                </Class>
+                <Class Id="{F85BD9B0-00BB-39C6-BB57-20C05690196E}" Context="InprocServer32" Description="EasyTaskAddin.BaseRibbonHelper" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="EasyTaskAddin.BaseRibbonHelper" Description="EasyTaskAddin.BaseRibbonHelper" />
+                </Class>
+                <File Id="filCAE2AE371D84EB56349DBBBFF4F2390F" KeyPath="yes" Source="SourceDir\Debug\EasyTaskAddin.dll" />
+                <Interface Id="{000C0601-0000-0000-C000-000000000046}" Name="Office .NET Framework Lockback Bypass Key" />
+                <ProgId Id="Record" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1E8EE634-77A3-348D-BA54-961DBCCAC3A6}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1E8EE634-77A3-348D-BA54-961DBCCAC3A6}\InprocServer32\0.0.5.0" Name="Class" Value="EasyTaskAddin.DueDateProcessor" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1E8EE634-77A3-348D-BA54-961DBCCAC3A6}\InprocServer32\0.0.5.0" Name="Assembly" Value="EasyTaskAddin, Version=0.0.5.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1E8EE634-77A3-348D-BA54-961DBCCAC3A6}\InprocServer32\0.0.5.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1E8EE634-77A3-348D-BA54-961DBCCAC3A6}\InprocServer32\0.0.5.0" Name="CodeBase" Value="file:///[#filCAE2AE371D84EB56349DBBBFF4F2390F]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1E8EE634-77A3-348D-BA54-961DBCCAC3A6}\InprocServer32" Name="Class" Value="EasyTaskAddin.DueDateProcessor" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1E8EE634-77A3-348D-BA54-961DBCCAC3A6}\InprocServer32" Name="Assembly" Value="EasyTaskAddin, Version=0.0.5.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1E8EE634-77A3-348D-BA54-961DBCCAC3A6}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1E8EE634-77A3-348D-BA54-961DBCCAC3A6}\InprocServer32" Name="CodeBase" Value="file:///[#filCAE2AE371D84EB56349DBBBFF4F2390F]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{509DC54F-081E-410D-A096-A875AFA66FC0}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{509DC54F-081E-410D-A096-A875AFA66FC0}\InprocServer32\0.0.5.0" Name="Class" Value="EasyTaskAddin.Addin" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{509DC54F-081E-410D-A096-A875AFA66FC0}\InprocServer32\0.0.5.0" Name="Assembly" Value="EasyTaskAddin, Version=0.0.5.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{509DC54F-081E-410D-A096-A875AFA66FC0}\InprocServer32\0.0.5.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{509DC54F-081E-410D-A096-A875AFA66FC0}\InprocServer32\0.0.5.0" Name="CodeBase" Value="file:///[#filCAE2AE371D84EB56349DBBBFF4F2390F]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{509DC54F-081E-410D-A096-A875AFA66FC0}\InprocServer32" Name="Class" Value="EasyTaskAddin.Addin" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{509DC54F-081E-410D-A096-A875AFA66FC0}\InprocServer32" Name="Assembly" Value="EasyTaskAddin, Version=0.0.5.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{509DC54F-081E-410D-A096-A875AFA66FC0}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{509DC54F-081E-410D-A096-A875AFA66FC0}\InprocServer32" Name="CodeBase" Value="file:///[#filCAE2AE371D84EB56349DBBBFF4F2390F]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{6D6BB2F9-3DCB-320E-B861-414AF1D171FC}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{6D6BB2F9-3DCB-320E-B861-414AF1D171FC}\InprocServer32\0.0.5.0" Name="Class" Value="EasyTaskAddin.SettingsForm" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{6D6BB2F9-3DCB-320E-B861-414AF1D171FC}\InprocServer32\0.0.5.0" Name="Assembly" Value="EasyTaskAddin, Version=0.0.5.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{6D6BB2F9-3DCB-320E-B861-414AF1D171FC}\InprocServer32\0.0.5.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{6D6BB2F9-3DCB-320E-B861-414AF1D171FC}\InprocServer32\0.0.5.0" Name="CodeBase" Value="file:///[#filCAE2AE371D84EB56349DBBBFF4F2390F]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{6D6BB2F9-3DCB-320E-B861-414AF1D171FC}\InprocServer32" Name="Class" Value="EasyTaskAddin.SettingsForm" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{6D6BB2F9-3DCB-320E-B861-414AF1D171FC}\InprocServer32" Name="Assembly" Value="EasyTaskAddin, Version=0.0.5.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{6D6BB2F9-3DCB-320E-B861-414AF1D171FC}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{6D6BB2F9-3DCB-320E-B861-414AF1D171FC}\InprocServer32" Name="CodeBase" Value="file:///[#filCAE2AE371D84EB56349DBBBFF4F2390F]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{824DB34C-BAA5-34D8-9CF3-71443BE56C14}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{824DB34C-BAA5-34D8-9CF3-71443BE56C14}\InprocServer32\0.0.5.0" Name="Class" Value="EasyTaskAddin.CategoryProcessor" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{824DB34C-BAA5-34D8-9CF3-71443BE56C14}\InprocServer32\0.0.5.0" Name="Assembly" Value="EasyTaskAddin, Version=0.0.5.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{824DB34C-BAA5-34D8-9CF3-71443BE56C14}\InprocServer32\0.0.5.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{824DB34C-BAA5-34D8-9CF3-71443BE56C14}\InprocServer32\0.0.5.0" Name="CodeBase" Value="file:///[#filCAE2AE371D84EB56349DBBBFF4F2390F]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{824DB34C-BAA5-34D8-9CF3-71443BE56C14}\InprocServer32" Name="Class" Value="EasyTaskAddin.CategoryProcessor" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{824DB34C-BAA5-34D8-9CF3-71443BE56C14}\InprocServer32" Name="Assembly" Value="EasyTaskAddin, Version=0.0.5.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{824DB34C-BAA5-34D8-9CF3-71443BE56C14}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{824DB34C-BAA5-34D8-9CF3-71443BE56C14}\InprocServer32" Name="CodeBase" Value="file:///[#filCAE2AE371D84EB56349DBBBFF4F2390F]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{ECC8AB9D-7EE6-3606-BFEA-97540DD5B835}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{ECC8AB9D-7EE6-3606-BFEA-97540DD5B835}\InprocServer32\0.0.5.0" Name="Class" Value="EasyTaskAddin.DueDateProcessor+HitPosition" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{ECC8AB9D-7EE6-3606-BFEA-97540DD5B835}\InprocServer32\0.0.5.0" Name="Assembly" Value="EasyTaskAddin, Version=0.0.5.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{ECC8AB9D-7EE6-3606-BFEA-97540DD5B835}\InprocServer32\0.0.5.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{ECC8AB9D-7EE6-3606-BFEA-97540DD5B835}\InprocServer32\0.0.5.0" Name="CodeBase" Value="file:///[#filCAE2AE371D84EB56349DBBBFF4F2390F]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{ECC8AB9D-7EE6-3606-BFEA-97540DD5B835}\InprocServer32" Name="Class" Value="EasyTaskAddin.DueDateProcessor+HitPosition" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{ECC8AB9D-7EE6-3606-BFEA-97540DD5B835}\InprocServer32" Name="Assembly" Value="EasyTaskAddin, Version=0.0.5.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{ECC8AB9D-7EE6-3606-BFEA-97540DD5B835}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{ECC8AB9D-7EE6-3606-BFEA-97540DD5B835}\InprocServer32" Name="CodeBase" Value="file:///[#filCAE2AE371D84EB56349DBBBFF4F2390F]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F85BD9B0-00BB-39C6-BB57-20C05690196E}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F85BD9B0-00BB-39C6-BB57-20C05690196E}\InprocServer32\0.0.5.0" Name="Class" Value="EasyTaskAddin.BaseRibbonHelper" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F85BD9B0-00BB-39C6-BB57-20C05690196E}\InprocServer32\0.0.5.0" Name="Assembly" Value="EasyTaskAddin, Version=0.0.5.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F85BD9B0-00BB-39C6-BB57-20C05690196E}\InprocServer32\0.0.5.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F85BD9B0-00BB-39C6-BB57-20C05690196E}\InprocServer32\0.0.5.0" Name="CodeBase" Value="file:///[#filCAE2AE371D84EB56349DBBBFF4F2390F]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F85BD9B0-00BB-39C6-BB57-20C05690196E}\InprocServer32" Name="Class" Value="EasyTaskAddin.BaseRibbonHelper" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F85BD9B0-00BB-39C6-BB57-20C05690196E}\InprocServer32" Name="Assembly" Value="EasyTaskAddin, Version=0.0.5.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F85BD9B0-00BB-39C6-BB57-20C05690196E}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F85BD9B0-00BB-39C6-BB57-20C05690196E}\InprocServer32" Name="CodeBase" Value="file:///[#filCAE2AE371D84EB56349DBBBFF4F2390F]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{7B01A201-1B31-390C-81B2-9106C6096A4E}\0.0.5.0" Name="Class" Value="EasyTaskAddin.CategoryProcessor+ParsePatternType" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{7B01A201-1B31-390C-81B2-9106C6096A4E}\0.0.5.0" Name="Assembly" Value="EasyTaskAddin, Version=0.0.5.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{7B01A201-1B31-390C-81B2-9106C6096A4E}\0.0.5.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{7B01A201-1B31-390C-81B2-9106C6096A4E}\0.0.5.0" Name="CodeBase" Value="file:///[#filCAE2AE371D84EB56349DBBBFF4F2390F]" Type="string" Action="write" />
+                <RegistryValue Root="HKCU" Key="Software\Microsoft\Office\Outlook\AddIns\EasyTask.Addin" Name="LoadBehavior" Value="3" Type="integer" Action="write" />
+                <RegistryValue Root="HKCU" Key="Software\Microsoft\Office\Outlook\AddIns\EasyTask.Addin" Name="FriendlyName" Value="EasyTask" Type="string" Action="write" />
+                <RegistryValue Root="HKCU" Key="Software\Microsoft\Office\Outlook\AddIns\EasyTask.Addin" Name="Description" Value="This add-in empowers standard Office tasks with possibility of using special keywords to specify different tasks attributes" Type="string" Action="write" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+</Wix>

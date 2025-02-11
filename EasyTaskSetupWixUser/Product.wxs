@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?define EasyTaskAddin_TargetDir=$(var.EasyTaskAddin.TargetDir)?>
+  <?define ProductName = "Easy Task Outlook add-in" ?>
+  <?define ProductDescription = "" ?>
+  <?if $(var.Platform) = x64 ?>
+  <?define ProductDisplayName = "$(var.ProductName) 64-bit" ?>
+  <?define Win64 = "yes" ?>
+  <?else ?>
+  <?define ProductDisplayName = "$(var.ProductName)" ?>
+  <?define Win64 = "no" ?>
+  <?endif ?>
+
+  <Product Id="*" Name="$(var.ProductDisplayName)" Language="1033" Version="!(bind.fileVersion.EasyTaskAddin.dll)" Manufacturer="Easy@Office" UpgradeCode="a0f00962-56ae-4560-9632-a8b1f7493755">
+    <Package InstallerVersion="500" Compressed="yes" Platform="$(var.Platform)" Description="This add-in empowers standard Office tasks with the possibility of specifying different task attributes directly when you write it down" />
+    <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+    <Feature Id="ProductFeature" Title="EasyTask Outlook add-in" Level="1">
+      <ComponentGroupRef Id="ProductComponentsPerUser" />
+    </Feature>
+    <UI />
+  </Product>
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="APPLICATIONFOLDER" Name="EasyTaskAddin">
+      </Directory>
+
+    </Directory>
+
+    <Property Id="MSIINSTALLPERUSER" Secure="yes" Value="1"/>
+    <Property Id="ALLUSERS" Secure="yes" Value="2"/>
+    <Property Id="ApplicationFolderName" Value="EasyTaskAddin" />
+    <Property Id="WixAppFolder" Value="WixPerMachineFolder" />
+    <UI>
+      <UIRef Id="WixUI_Advanced"/>
+      <UIRef Id="WixUI_ErrorProgressText"/>
+      <Publish Dialog="InstallScopeDlg" Control="Next" Order="8" Event="DoAction" Value="FindRelatedProducts">WixAppFolder = "WixPerMachineFolder"</Publish>
+      <Publish Dialog="InstallScopeDlg" Control="Next" Property="MSIINSTALLPERUSER" Value="1" Order="3">WixAppFolder = "WixPerUserFolder"</Publish>
+      <Publish Dialog="InstallScopeDlg" Control="Next" Property="MSIINSTALLPERUSER" Value="{}" Order="2">WixAppFolder = "WixPerMachineFolder"</Publish>
+      <Publish Dialog="InstallScopeDlg" Control="Next" Event="DoAction" Value="WixSetDefaultPerMachineFolder" Order="3">WixAppFolder = "WixPerMachineFolder"</Publish>
+      <Publish Dialog="InstallScopeDlg" Control="Next" Event="DoAction" Value="WixSetDefaultPerUserFolder" Order="3">WixAppFolder = "WixPerUserFolder"</Publish>
+    </UI>
+
+    <!--Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+    <UIRef Id="WixUI_MultiAdvanced" /-->
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="ProductComponentsPerUser" Directory="APPLICATIONFOLDER">
+      <Component Id="Microsoft.Recognizers.Text.DateTime.dll" Guid="454d6844-3d1b-4ff4-896c-019b21d03dc2">
+        <File Id="Microsoft.Recognizers.Text.DateTime.dll_PerUser" Name="Microsoft.Recognizers.Text.DateTime.dll" Source="$(var.EasyTaskAddin_TargetDir)Microsoft.Recognizers.Text.DateTime.dll" />
+        <RegistryValue Root="HKMU" Key="Software\Manufacturer\Product" Name="Installation path" Value="[INSTALLFOLDER]" Type="string" KeyPath="yes" />
+        <RemoveFolder Id="RemoveInstallFolder" Directory="APPLICATIONFOLDER" On="uninstall" />
+      </Component>
+      <Component Id="stdole.dll" Guid="7e44e452-ceea-4b89-a75b-c0dab0a5aaaa">
+        <File Id="stdole.dll_PerUser" Name="stdole.dll" Source="$(var.EasyTaskAddin_TargetDir)stdole.dll" />
+        <RegistryValue Root="HKMU" Key="Software\Manufacturer\Product" Name="Installation path" Value="[INSTALLFOLDER]" Type="string" KeyPath="yes" />
+      </Component>
+      <Component Id="ManagedWinapi.dll" Guid="93a749b7-0812-4ee8-afcd-a7284b8c0a65">
+        <File Id="ManagedWinapi.dll_PerUser" Name="ManagedWinapi.dll" Source="$(var.EasyTaskAddin_TargetDir)ManagedWinapi.dll" />
+        <RegistryValue Root="HKMU" Key="Software\Manufacturer\Product" Name="Installation path" Value="[INSTALLFOLDER]" Type="string" KeyPath="yes" />
+      </Component>
+      <Component Id="System.ValueTuple.dll" Guid="7222f0e0-081f-4407-a7fe-4bb7082d8082">
+        <File Id="System.ValueTuple.dll" Name="System.ValueTuple.dll" Source="$(var.EasyTaskAddin_TargetDir)System.ValueTuple.dll" />
+        <RegistryValue Root="HKMU" Key="Software\Manufacturer\Product" Name="Installation path" Value="[INSTALLFOLDER]" Type="string" KeyPath="yes" />
+      </Component>
+      <Component Id="System.Collections.Immutable.dll" Guid="eec5e198-dd9c-4918-a17a-6bd81c828a17">
+        <File Id="System.Collections.Immutable.dll" Name="System.Collections.Immutable.dll" Source="$(var.EasyTaskAddin_TargetDir)System.Collections.Immutable.dll" />
+        <RegistryValue Root="HKMU" Key="Software\Manufacturer\Product" Name="Installation path" Value="[INSTALLFOLDER]" Type="string" KeyPath="yes" />
+      </Component>
+      <Component Id="Microsoft.Recognizers.Text.Number.dll" Guid="7eb8b494-d9ae-4180-9a28-a6f9efcd9605">
+        <File Id="Microsoft.Recognizers.Text.Number.dll" Name="Microsoft.Recognizers.Text.Number.dll" Source="$(var.EasyTaskAddin_TargetDir)Microsoft.Recognizers.Text.Number.dll" />
+        <RegistryValue Root="HKMU" Key="Software\Manufacturer\Product" Name="Installation path" Value="[INSTALLFOLDER]" Type="string" KeyPath="yes" />
+      </Component>
+      <Component Id="Microsoft.Recognizers.Definitions.dll" Guid="17d35d6c-747f-4ce4-8f1c-13bfc711e96e">
+        <File Id="Microsoft.Recognizers.Definitions.dll" Name="Microsoft.Recognizers.Definitions.dll" Source="$(var.EasyTaskAddin_TargetDir)Microsoft.Recognizers.Definitions.dll" />
+        <RegistryValue Root="HKMU" Key="Software\Manufacturer\Product" Name="Installation path" Value="[INSTALLFOLDER]" Type="string" KeyPath="yes" />
+      </Component>
+      <Component Id="Microsoft.Recognizers.Text.NumberWithUnit.dll" Guid="9344d53e-0319-44c9-b55f-a646ab1db212">
+        <File Id="Microsoft.Recognizers.Text.NumberWithUnit.dll" Name="Microsoft.Recognizers.Text.NumberWithUnit.dll" Source="$(var.EasyTaskAddin_TargetDir)Microsoft.Recognizers.Text.NumberWithUnit.dll" />
+        <RegistryValue Root="HKMU" Key="Software\Manufacturer\Product" Name="Installation path" Value="[INSTALLFOLDER]" Type="string" KeyPath="yes" />
+      </Component>
+      <Component Id="ManagedWinapiNativeHelper.dll" Guid="06b821be-e5e4-43f6-a3ea-1a304a9b5d9c">
+        <File Id="ManagedWinapiNativeHelper.dll" Name="ManagedWinapiNativeHelper.dll" Source="$(var.EasyTaskAddin_TargetDir)ManagedWinapiNativeHelper.dll" />
+        <RegistryValue Root="HKMU" Key="Software\Manufacturer\Product" Name="Installation path" Value="[INSTALLFOLDER]" Type="string" KeyPath="yes" />
+      </Component>
+      <Component Id="WinApi.dll" Guid="fbb2b400-81da-43bd-93c5-681a3b7de7a8">
+        <File Id="WinApi.dll" Name="WinApi.dll" Source="$(var.EasyTaskAddin_TargetDir)WinApi.dll" />
+        <RegistryValue Root="HKMU" Key="Software\Manufacturer\Product" Name="Installation path" Value="[INSTALLFOLDER]" Type="string" KeyPath="yes" />
+      </Component>
+      <Component Id="Microsoft.Recognizers.Text.dll" Guid="bbca988a-f3bf-4823-b9b7-d65a876eabb3">
+        <File Id="Microsoft.Recognizers.Text.dll" Name="Microsoft.Recognizers.Text.dll" Source="$(var.EasyTaskAddin_TargetDir)Microsoft.Recognizers.Text.dll" />
+        <RegistryValue Root="HKMU" Key="Software\Manufacturer\Product" Name="Installation path" Value="[INSTALLFOLDER]" Type="string" KeyPath="yes" />
+      </Component>
+      <Component Id="UpdateApplication.dll" Guid="8c6b01e6-c4c5-4284-9341-cceceee5b51d">
+        <File Id="UpdateApplication.dll" Name="UpdateApplication.dll" Source="$(var.EasyTaskAddin_TargetDir)UpdateApplication.dll" />
+        <RegistryValue Root="HKMU" Key="Software\Manufacturer\Product" Name="Installation path" Value="[INSTALLFOLDER]" Type="string" KeyPath="yes" />
+      </Component>
+      <Component Id="OfficeApi.dll" Guid="12cd14d4-7d17-4bcb-aae0-3a3d5506cb64">
+        <File Id="OfficeApi.dll" Name="OfficeApi.dll" Source="$(var.EasyTaskAddin_TargetDir)OfficeApi.dll" />
+        <RegistryValue Root="HKMU" Key="Software\Manufacturer\Product" Name="Installation path" Value="[INSTALLFOLDER]" Type="string" KeyPath="yes" />
+      </Component>
+      <Component Id="log4net.dll" Guid="8b58acd0-a64b-4c9c-8d2b-bd8191919d8e">
+        <File Id="log4net.dll" Name="log4net.dll" Source="$(var.EasyTaskAddin_TargetDir)log4net.dll" />
+        <RegistryValue Root="HKMU" Key="Software\Manufacturer\Product" Name="Installation path" Value="[INSTALLFOLDER]" Type="string" KeyPath="yes" />
+      </Component>
+      <Component Id="OutlookControlsExtensions.dll" Guid="f4a4d89a-66c2-42ce-85b9-738c23c8dea3">
+        <File Id="OutlookControlsExtensions.dll" Name="OutlookControlsExtensions.dll" Source="$(var.EasyTaskAddin_TargetDir)OutlookControlsExtensions.dll" />
+        <RegistryValue Root="HKMU" Key="Software\Manufacturer\Product" Name="Installation path" Value="[INSTALLFOLDER]" Type="string" KeyPath="yes" />
+      </Component>
+      <Component Id="OutlookApi.dll" Guid="5865c3bc-e68d-454b-a943-3d331f4847a4">
+        <File Id="OutlookApi.dll" Name="OutlookApi.dll" Source="$(var.EasyTaskAddin_TargetDir)OutlookApi.dll" />
+        <RegistryValue Root="HKMU" Key="Software\Manufacturer\Product" Name="Installation path" Value="[INSTALLFOLDER]" Type="string" KeyPath="yes" />
+      </Component>
+      <Component Id="NetOffice.dll" Guid="5b0b2a9b-c2c5-43d5-8d93-3b7c4204754c">
+        <File Id="NetOffice.dll" Name="NetOffice.dll" Source="$(var.EasyTaskAddin_TargetDir)NetOffice.dll" />
+        <RegistryValue Root="HKMU" Key="Software\Manufacturer\Product" Name="Installation path" Value="[INSTALLFOLDER]" Type="string" KeyPath="yes" />
+      </Component>
+      <Component Id="EasyTaskAddin.dll" Guid="6371110c-a5d6-49aa-b761-3187085045cf">
+        <File Id="EasyTaskAddin.dll" Name="EasyTaskAddin.dll" Source="$(var.EasyTaskAddin_TargetDir)EasyTaskAddin.dll" />
+        <RegistryValue Root="HKMU" Key="Software\Manufacturer\Product" Name="Installation path" Value="[INSTALLFOLDER]" Type="string" KeyPath="yes" />
+        <Class Id="{1E8EE634-77A3-348D-BA54-961DBCCAC3A6}" Context="InprocServer32" Description="EasyTaskAddin.DueDateProcessor" ThreadingModel="both" ForeignServer="mscoree.dll">
+          <ProgId Id="EasyTaskAddin.DueDateProcessor" Description="EasyTaskAddin.DueDateProcessor" />
+        </Class>
+        <Class Id="{509DC54F-081E-410D-A096-A875AFA66FC0}" Context="InprocServer32" Description="EasyTaskAddin.Addin" ThreadingModel="both" Programmable="yes" ForeignServer="mscoree.dll">
+          <ProgId Id="EasyTask.Addin" Description="EasyTaskAddin.Addin" />
+        </Class>
+        <Class Id="{6D6BB2F9-3DCB-320E-B861-414AF1D171FC}" Context="InprocServer32" Description="EasyTaskAddin.SettingsForm" ThreadingModel="both" ForeignServer="mscoree.dll">
+          <ProgId Id="EasyTaskAddin.SettingsForm" Description="EasyTaskAddin.SettingsForm" />
+        </Class>
+        <Class Id="{824DB34C-BAA5-34D8-9CF3-71443BE56C14}" Context="InprocServer32" Description="EasyTaskAddin.CategoryProcessor" ThreadingModel="both" ForeignServer="mscoree.dll">
+          <ProgId Id="EasyTaskAddin.CategoryProcessor" Description="EasyTaskAddin.CategoryProcessor" />
+        </Class>
+        <Class Id="{ECC8AB9D-7EE6-3606-BFEA-97540DD5B835}" Context="InprocServer32" Description="EasyTaskAddin.DueDateProcessor+HitPosition" ThreadingModel="both" ForeignServer="mscoree.dll">
+          <ProgId Id="EasyTaskAddin.DueDateProcessor+HitPosition" Description="EasyTaskAddin.DueDateProcessor+HitPosition" />
+        </Class>
+        <Class Id="{F85BD9B0-00BB-39C6-BB57-20C05690196E}" Context="InprocServer32" Description="EasyTaskAddin.BaseRibbonHelper" ThreadingModel="both" ForeignServer="mscoree.dll">
+          <ProgId Id="EasyTaskAddin.BaseRibbonHelper" Description="EasyTaskAddin.BaseRibbonHelper" />
+        </Class>
+        <Interface Id="{000C0601-0000-0000-C000-000000000046}" Name="Office .NET Framework Lockback Bypass Key" />
+        <ProgId Id="Record" />
+        <RegistryValue Root="HKCR" Key="CLSID\{1E8EE634-77A3-348D-BA54-961DBCCAC3A6}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{1E8EE634-77A3-348D-BA54-961DBCCAC3A6}\InprocServer32\0.0.5.0" Name="Class" Value="EasyTaskAddin.DueDateProcessor" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{1E8EE634-77A3-348D-BA54-961DBCCAC3A6}\InprocServer32\0.0.5.0" Name="Assembly" Value="EasyTaskAddin, Version=!(bind.property.ProductVersion), Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{1E8EE634-77A3-348D-BA54-961DBCCAC3A6}\InprocServer32\0.0.5.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{1E8EE634-77A3-348D-BA54-961DBCCAC3A6}\InprocServer32\0.0.5.0" Name="CodeBase" Value="file:///[#EasyTaskAddin.dll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{1E8EE634-77A3-348D-BA54-961DBCCAC3A6}\InprocServer32" Name="Class" Value="EasyTaskAddin.DueDateProcessor" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{1E8EE634-77A3-348D-BA54-961DBCCAC3A6}\InprocServer32" Name="Assembly" Value="EasyTaskAddin, Version=!(bind.property.ProductVersion), Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{1E8EE634-77A3-348D-BA54-961DBCCAC3A6}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{1E8EE634-77A3-348D-BA54-961DBCCAC3A6}\InprocServer32" Name="CodeBase" Value="file:///[#EasyTaskAddin.dll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{509DC54F-081E-410D-A096-A875AFA66FC0}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{509DC54F-081E-410D-A096-A875AFA66FC0}\InprocServer32\0.0.5.0" Name="Class" Value="EasyTaskAddin.Addin" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{509DC54F-081E-410D-A096-A875AFA66FC0}\InprocServer32\0.0.5.0" Name="Assembly" Value="EasyTaskAddin, Version=!(bind.property.ProductVersion), Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{509DC54F-081E-410D-A096-A875AFA66FC0}\InprocServer32\0.0.5.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{509DC54F-081E-410D-A096-A875AFA66FC0}\InprocServer32\0.0.5.0" Name="CodeBase" Value="file:///[#EasyTaskAddin.dll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{509DC54F-081E-410D-A096-A875AFA66FC0}\InprocServer32" Name="Class" Value="EasyTaskAddin.Addin" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{509DC54F-081E-410D-A096-A875AFA66FC0}\InprocServer32" Name="Assembly" Value="EasyTaskAddin, Version=!(bind.property.ProductVersion), Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{509DC54F-081E-410D-A096-A875AFA66FC0}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{509DC54F-081E-410D-A096-A875AFA66FC0}\InprocServer32" Name="CodeBase" Value="file:///[#EasyTaskAddin.dll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{6D6BB2F9-3DCB-320E-B861-414AF1D171FC}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{6D6BB2F9-3DCB-320E-B861-414AF1D171FC}\InprocServer32\0.0.5.0" Name="Class" Value="EasyTaskAddin.SettingsForm" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{6D6BB2F9-3DCB-320E-B861-414AF1D171FC}\InprocServer32\0.0.5.0" Name="Assembly" Value="EasyTaskAddin, Version=!(bind.property.ProductVersion), Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{6D6BB2F9-3DCB-320E-B861-414AF1D171FC}\InprocServer32\0.0.5.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{6D6BB2F9-3DCB-320E-B861-414AF1D171FC}\InprocServer32\0.0.5.0" Name="CodeBase" Value="file:///[#EasyTaskAddin.dll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{6D6BB2F9-3DCB-320E-B861-414AF1D171FC}\InprocServer32" Name="Class" Value="EasyTaskAddin.SettingsForm" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{6D6BB2F9-3DCB-320E-B861-414AF1D171FC}\InprocServer32" Name="Assembly" Value="EasyTaskAddin, Version=!(bind.property.ProductVersion), Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{6D6BB2F9-3DCB-320E-B861-414AF1D171FC}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{6D6BB2F9-3DCB-320E-B861-414AF1D171FC}\InprocServer32" Name="CodeBase" Value="file:///[#EasyTaskAddin.dll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{824DB34C-BAA5-34D8-9CF3-71443BE56C14}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{824DB34C-BAA5-34D8-9CF3-71443BE56C14}\InprocServer32\0.0.5.0" Name="Class" Value="EasyTaskAddin.CategoryProcessor" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{824DB34C-BAA5-34D8-9CF3-71443BE56C14}\InprocServer32\0.0.5.0" Name="Assembly" Value="EasyTaskAddin, Version=!(bind.property.ProductVersion), Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{824DB34C-BAA5-34D8-9CF3-71443BE56C14}\InprocServer32\0.0.5.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{824DB34C-BAA5-34D8-9CF3-71443BE56C14}\InprocServer32\0.0.5.0" Name="CodeBase" Value="file:///[#EasyTaskAddin.dll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{824DB34C-BAA5-34D8-9CF3-71443BE56C14}\InprocServer32" Name="Class" Value="EasyTaskAddin.CategoryProcessor" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{824DB34C-BAA5-34D8-9CF3-71443BE56C14}\InprocServer32" Name="Assembly" Value="EasyTaskAddin, Version=!(bind.property.ProductVersion), Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{824DB34C-BAA5-34D8-9CF3-71443BE56C14}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{824DB34C-BAA5-34D8-9CF3-71443BE56C14}\InprocServer32" Name="CodeBase" Value="file:///[#EasyTaskAddin.dll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{ECC8AB9D-7EE6-3606-BFEA-97540DD5B835}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{ECC8AB9D-7EE6-3606-BFEA-97540DD5B835}\InprocServer32\0.0.5.0" Name="Class" Value="EasyTaskAddin.DueDateProcessor+HitPosition" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{ECC8AB9D-7EE6-3606-BFEA-97540DD5B835}\InprocServer32\0.0.5.0" Name="Assembly" Value="EasyTaskAddin, Version=!(bind.property.ProductVersion), Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{ECC8AB9D-7EE6-3606-BFEA-97540DD5B835}\InprocServer32\0.0.5.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{ECC8AB9D-7EE6-3606-BFEA-97540DD5B835}\InprocServer32\0.0.5.0" Name="CodeBase" Value="file:///[#EasyTaskAddin.dll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{ECC8AB9D-7EE6-3606-BFEA-97540DD5B835}\InprocServer32" Name="Class" Value="EasyTaskAddin.DueDateProcessor+HitPosition" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{ECC8AB9D-7EE6-3606-BFEA-97540DD5B835}\InprocServer32" Name="Assembly" Value="EasyTaskAddin, Version=!(bind.property.ProductVersion), Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{ECC8AB9D-7EE6-3606-BFEA-97540DD5B835}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{ECC8AB9D-7EE6-3606-BFEA-97540DD5B835}\InprocServer32" Name="CodeBase" Value="file:///[#EasyTaskAddin.dll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{F85BD9B0-00BB-39C6-BB57-20C05690196E}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{F85BD9B0-00BB-39C6-BB57-20C05690196E}\InprocServer32\0.0.5.0" Name="Class" Value="EasyTaskAddin.BaseRibbonHelper" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{F85BD9B0-00BB-39C6-BB57-20C05690196E}\InprocServer32\0.0.5.0" Name="Assembly" Value="EasyTaskAddin, Version=!(bind.property.ProductVersion), Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{F85BD9B0-00BB-39C6-BB57-20C05690196E}\InprocServer32\0.0.5.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{F85BD9B0-00BB-39C6-BB57-20C05690196E}\InprocServer32\0.0.5.0" Name="CodeBase" Value="file:///[#EasyTaskAddin.dll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{F85BD9B0-00BB-39C6-BB57-20C05690196E}\InprocServer32" Name="Class" Value="EasyTaskAddin.BaseRibbonHelper" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{F85BD9B0-00BB-39C6-BB57-20C05690196E}\InprocServer32" Name="Assembly" Value="EasyTaskAddin, Version=!(bind.property.ProductVersion), Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{F85BD9B0-00BB-39C6-BB57-20C05690196E}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{F85BD9B0-00BB-39C6-BB57-20C05690196E}\InprocServer32" Name="CodeBase" Value="file:///[#EasyTaskAddin.dll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="Record\{7B01A201-1B31-390C-81B2-9106C6096A4E}\0.0.5.0" Name="Class" Value="EasyTaskAddin.CategoryProcessor+ParsePatternType" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="Record\{7B01A201-1B31-390C-81B2-9106C6096A4E}\0.0.5.0" Name="Assembly" Value="EasyTaskAddin, Version=!(bind.property.ProductVersion), Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="Record\{7B01A201-1B31-390C-81B2-9106C6096A4E}\0.0.5.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="Record\{7B01A201-1B31-390C-81B2-9106C6096A4E}\0.0.5.0" Name="CodeBase" Value="file:///[#EasyTaskAddin.dll]" Type="string" Action="write" />
+        <RegistryValue Root="HKMU" Key="Software\Microsoft\Office\Outlook\AddIns\EasyTask.Addin" Name="LoadBehavior" Value="3" Type="integer" Action="write" />
+        <RegistryValue Root="HKMU" Key="Software\Microsoft\Office\Outlook\AddIns\EasyTask.Addin" Name="FriendlyName" Value="EasyTask" Type="string" Action="write" />
+        <RegistryValue Root="HKMU" Key="Software\Microsoft\Office\Outlook\AddIns\EasyTask.Addin" Name="Description" Value="This add-in empowers standard Office tasks with possibility of using special keywords to specify different tasks attributes" Type="string" Action="write" />
+      </Component>
+      <Component Id="Resources_program.ico" Guid="a3515694-51a6-4403-9990-499427b5d899">
+        <File Id="Resources_program.ico" Name="program.ico" Source="$(var.EasyTaskAddin.ProjectDir)Resources\EasyTask.ico" />
+        <RegistryValue Root="HKMU" Key="Software\Manufacturer\Product" Name="Installation path" Value="[INSTALLFOLDER]" Type="string" KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

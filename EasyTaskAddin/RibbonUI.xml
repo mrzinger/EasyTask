@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui" onLoad="OnLoadRibonUI">
+  <ribbon>
+    <tabs>
+      <tab id="EasyTask" label="EASY TASK">
+        <group id="Settings" label="Settings">
+          <checkBox id="EnableAddinCheckbox" onAction="OnEnableCheckbox" getPressed ="OnPressCheckbox"
+                    getScreentip="GetDescription" getLabel="GetLabel"
+                  tag ="label=EnableCheckboxLabel;description=EnableCheckboxDescription"/>
+          <button id="aboutButton" onAction="OnAboutButton" getScreentip="GetDescription" getLabel="GetLabel" getImage="LoadImage"
+                    tag ="label=AboutButtonLabel;description=AboutButtonDescription;image=about_icon"/>
+          <button id="bugBtn_compose" onAction="OnBugButton" getScreentip="GetDescription" getLabel="GetLabel" getImage="LoadImage"
+                  tag ="image=bug_icon;label=BugButtonLabel;description=BugButtonDescription" />
+
+        </group>
+        <group id="Update" label="Update">
+          <button id="settingsButton" onAction="OnSettingsButton"
+        getScreentip="GetDescription" getLabel="GetLabel" getImage="LoadImage"
+        tag ="image=settings_icon;label=SettingsButtonLabel;description=SettingsDescription"/>
+          <button id="updateButton" onAction="OnUpdateButton" 
+                  getScreentip="GetDescription" getLabel="GetLabel" getImage="LoadImage"
+                  tag ="image=update_icon;label=UpdateButtonLabel;description=UpdateButtonDescription"/>
+          
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>
+
