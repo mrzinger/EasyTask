@@ -28,7 +28,6 @@ namespace EasyTaskAddin
         ProcessedTasksDatabase _tasksDb = null;
 
         #region OL Controls extensions
-        WindowSubclassManager _scManager = new WindowSubclassManager();
         FilteredListExtension _filteredList = new FilteredListExtension();
         TaskEditBoxExstensionsManager _tebeManager = null;
         #endregion
@@ -41,7 +40,7 @@ namespace EasyTaskAddin
 		{
             this.OnStartupComplete += new OnStartupCompleteEventHandler(Addin_OnStartupComplete);
             this.OnDisconnection += new OnDisconnectionEventHandler(Addin_OnDisconnection);
-            _settingsHandler = new SettingsHandler(_dueProcessor, _categoryProcessor);
+            _settingsHandler = new SettingsHandler(_dueProcessor, _categoryProcessor, _filteredList);
         }
 
         private void Addin_OnStartupComplete(ref Array custom)
@@ -54,8 +53,6 @@ namespace EasyTaskAddin
 
                 var col = XmlConfigurator.Configure((XmlElement)xmlDoc.FirstChild);
                 log.Info("Logger is initialized");
-
-
 
                 //Console.WriteLine("Addin started in Outlook Version {0}", Application.Version);
                 _taskItems = (Outlook.Items)this.Application.Session.GetDefaultFolder(OlDefaultFolders.olFolderToDo).Items; //OL TODO?
@@ -75,9 +72,9 @@ namespace EasyTaskAddin
         private void InitControlExtensions ()
         {
             _tebeManager = new TaskEditBoxExstensionsManager();
-            FilteredListExtension flExtension = new FilteredListExtension();
-            InitKeywordsExtension(flExtension);
-            _tebeManager.AddExtension(flExtension);
+            
+            InitKeywordsExtension(_filteredList);
+            _tebeManager.AddExtension(_filteredList);
 
             IntPtr mainOlWindow = GetOutlookMainHWnd();
 
@@ -107,7 +104,7 @@ namespace EasyTaskAddin
             var nameSpace = this.Application.Session;
             foreach (var category in nameSpace.Categories)
                 flExt.Keywords.Add("[" + category.Name + "]");
-        }
+        }   
 
         private void TaskItems_ItemAdd(object Item)
         {

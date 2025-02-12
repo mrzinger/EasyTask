@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OutlookControlsExtensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,13 +8,15 @@ namespace EasyTaskAddin
 {
     public class SettingsHandler
     {
-        DueDateProcessor m_dueDateProcessor = null;
-        CategoryProcessor m_categoryProcessor = null;
+        DueDateProcessor _dueDateProcessor = null;
+        CategoryProcessor _categoryProcessor = null;
+        FilteredListExtension _filteredList = null;
 
-        public SettingsHandler(DueDateProcessor dueDateProcessor, CategoryProcessor categoryProcessor)
+        public SettingsHandler(DueDateProcessor dueDateProcessor, CategoryProcessor categoryProcessor, FilteredListExtension filteredListExtension)
         {
-            m_dueDateProcessor = dueDateProcessor;
-            m_categoryProcessor = categoryProcessor;
+            _dueDateProcessor = dueDateProcessor;
+            _categoryProcessor = categoryProcessor;
+            _filteredList = filteredListExtension;
             UpdateSettings();
         }
 
@@ -21,13 +24,18 @@ namespace EasyTaskAddin
         {
             var settings = Properties.Settings.Default;
             
-            m_categoryProcessor.ReplaceCategoryString = settings.RemoveCategoryName;
-            m_categoryProcessor.PatternType = (settings.UseKeywordCategoryPattern) ? CategoryProcessor.ParsePatternType.Keyword : 
+            _categoryProcessor.ReplaceCategoryString = settings.RemoveCategoryName;
+            _categoryProcessor.PatternType = (settings.UseKeywordCategoryPattern) ? CategoryProcessor.ParsePatternType.Keyword : 
                 (settings.UseBracketCategoryPattern) ? CategoryProcessor.ParsePatternType.Brackets :
                 (settings.UseArrowCategoryPattern) ? CategoryProcessor.ParsePatternType.Arrow :
                 CategoryProcessor.ParsePatternType.CustomPattern;
 
-            m_dueDateProcessor.ReplaceDueDateString = settings.RemoveDueDateString;
+            _dueDateProcessor.ReplaceDueDateString = settings.RemoveDueDateString;
+
+            if (settings.UseBracketCategoryPattern)
+                _filteredList.FilterTriggerChar = '[';
+            else 
+                _filteredList.FilterTriggerChar = null;
     
         }
     }
