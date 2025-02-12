@@ -13,7 +13,7 @@ namespace EasyTaskAddin
 
         public enum ParsePatternType
         {
-            Keyword,       //Assumes standard pattern with keyword "category:(CategoryName)"
+            Keyword,        //Assumes standard pattern with keyword "category:(CategoryName)"
             Brackets,       //Assumes pattern like "[CategoryName] Task description"
             Arrow,          //Assumes pattern like "CategoryName> Task description"
             CustomPattern   
@@ -21,7 +21,7 @@ namespace EasyTaskAddin
 
         private Dictionary<ParsePatternType, string> m_patternsDictionary = new Dictionary<ParsePatternType, string>() {
             { ParsePatternType.Keyword, @"category:\s?\((.+?)\)" },
-            { ParsePatternType.Brackets, @"^\[(.+)\]" },
+            { ParsePatternType.Brackets, @"^\s*\[\s*([^]]+?)\s*\]" },
             { ParsePatternType.Arrow, @"^(.+)>" },
             { ParsePatternType.CustomPattern, "" }
         };

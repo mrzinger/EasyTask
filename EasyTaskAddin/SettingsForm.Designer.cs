@@ -110,9 +110,9 @@
             this.checkBox2.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::EasyTaskAddin.Properties.Settings.Default, "RemoveDueDateString", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.checkBox2.Location = new System.Drawing.Point(7, 19);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(208, 17);
+            this.checkBox2.Size = new System.Drawing.Size(188, 17);
             this.checkBox2.TabIndex = 0;
-            this.checkBox2.Text = "Remove category text after processing";
+            this.checkBox2.Text = "Remove date text after processing";
             this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // categoryParserTab
@@ -208,9 +208,9 @@
             this.rbtnCustomCategoryPattern.Checked = global::EasyTaskAddin.Properties.Settings.Default.UseCustomCategoryPattern;
             this.rbtnCustomCategoryPattern.Location = new System.Drawing.Point(7, 88);
             this.rbtnCustomCategoryPattern.Name = "rbtnCustomCategoryPattern";
-            this.rbtnCustomCategoryPattern.Size = new System.Drawing.Size(120, 17);
+            this.rbtnCustomCategoryPattern.Size = new System.Drawing.Size(155, 17);
             this.rbtnCustomCategoryPattern.TabIndex = 3;
-            this.rbtnCustomCategoryPattern.Text = "Use custom pattern:";
+            this.rbtnCustomCategoryPattern.Text = "Use custom RegEx pattern:";
             this.rbtnCustomCategoryPattern.UseVisualStyleBackColor = true;
             this.rbtnCustomCategoryPattern.CheckedChanged += new System.EventHandler(this.rbtnCustomCategoryPattern_CheckedChanged);
             // 
