@@ -29,9 +29,11 @@ jobs:
       uses: microsoft/setup-msbuild@v1.3.1
     - name: run msbuild
       run: msbuild EasyTask/EasyTaskAddin.sln -t:Clean -p:Configuration=${{ env.BuildConfiguration }} -p:Platform="${{ env.BuildPlatform }}" -v:normal
+    - name: run list dir
+      run: dir /s /b
 
     - name: 'Publish Artifact: drop'
       uses: actions/upload-artifact@v4.1.0
       with:
         name: drop
-        path: "**\\bin\\${{ env.BuildConfiguration }}\\*.*"
+        path: "**\\bin\\${{ env.BuildConfiguration }}\\*.msi"
