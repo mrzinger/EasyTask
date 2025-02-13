@@ -12,54 +12,25 @@ env:
 jobs:
   Phase_1:
     name: Agent job 1
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
     - name: checkout
       uses: actions/checkout@v4.1.0
-    - name: Use NuGet 4.3.0
-      uses: nuget/setup-nuget@v1.2.0
-      with:
-        nuget-version: 4.3.0
-    # NuGet does not accept glob patterns. Consider specifying files directly or using a solution.
-    - name: NuGet restore
-      run: nuget restore EasyTaskAddin.sln -Verbosity Detailed
+    - name: NuGet restore CommonLib
+      run: nuget restore CommonLib/CommonLib.sln -Verbosity Detailed
+    - name: NuGet restore EasyTaskAddin
+      run: nuget restore EasyTask/EasyTaskAddin.sln -Verbosity Detailed
     - name: install msbuild
-      uses: microsoft/setup-msbuild@v1.3.1
+      uses: microsoft/setup-msbuild@v2
     - name: run msbuild
-      run: msbuild EasyTaskAddin.sln -t:Clean -p:Configuration=${{ env.BuildConfiguration }} -p:Platform="${{ env.BuildPlatform }}" -v:normal
-    # The following script preserves the globbing behavior of the CopyFiles task.
-    # Refer to this transformer's documentation for an alternative that will work in simple cases.
-    - name: 'Copy Files to: ${{ github.workspace }}'
-      uses: actions/github-script@v7.0.0
-      env:
-        TARGET_FOLDER: "${{ github.workspace }}"
-        SOURCE_FOLDER: "./EasyTask/EasyTaskSetupWixUser"
-        CLEAN_TARGET_FOLDER: true
-        FLATTEN_FOLDERS: true
-        OVERWRITE: true
-        CONTENTS: "**\\bin\\${{ env.BuildConfiguration }}\\*.msi"
-      with:
-        github-token: "${{ secrets.GITHUB_TOKEN }}"
-        script: |-
-          const fs = require('fs').promises
-          const path = require('path')
-          const target = path.resolve(process.env.TARGET_FOLDER)
-          process.chdir(process.env.SOURCE_FOLDER || '.')
-          if (process.env.CLEAN_TARGET_FOLDER === 'true') await io.rmRF(target)
-          const flattenFolders = process.env.FLATTEN_FOLDERS === 'true'
-          const options = {force: process.env.OVERWRITE === 'true'}
-          const globber = await glob.create(process.env.CONTENTS || '**')
-          for await (const file of globber.globGenerator()) {
-            if ((await fs.lstat(file)).isDirectory()) continue
-            const filename = flattenFolders ? path.basename(file) : file.substring(process.cwd().length)
-            const dest = path.join(target, filename)
-            await io.mkdirP(path.dirname(dest))
-            await io.cp(file, dest, options)
-          }
-    - name: Zip files
-      run: 7z u ${{ runner.temp }}/EasyTask${{ github.run_id }}.zip ./${{ github.workspace }}/*
+      run: msbuild EasyTask/EasyTaskAddin.sln -p:Configuration=${{ env.BuildConfiguration }} -p:Platform="${{ env.BuildPlatform }}" -v:normal
+    
+    - name: run list dir
+      run: ls **\*.dll -Recurse
+
     - name: 'Publish Artifact: drop'
       uses: actions/upload-artifact@v4.1.0
       with:
         name: drop
-        path: "\\\\my\\share\\${{ github.workflow }}\\${{ github.run_number }}"
+        if-no-files-found: error
+        path: "**\\bin\\${{ env.BuildConfiguration }}\\*.msi"
