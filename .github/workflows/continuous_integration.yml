@@ -21,12 +21,14 @@ jobs:
       with:
         nuget-version: 4.3.0
     # NuGet does not accept glob patterns. Consider specifying files directly or using a solution.
-    - name: NuGet restore
-      run: nuget restore EasyTaskAddin.sln -Verbosity Detailed
+    - name: NuGet restore CommonLib
+      run: nuget restore CommonLib/CommonLib.sln -Verbosity Detailed
+    - name: NuGet restore EasyTaskAddin
+      run: nuget restore EasyTask/EasyTaskAddin.sln -Verbosity Detailed
     - name: install msbuild
       uses: microsoft/setup-msbuild@v1.3.1
     - name: run msbuild
-      run: msbuild EasyTaskAddin.sln -t:Clean -p:Configuration=${{ env.BuildConfiguration }} -p:Platform="${{ env.BuildPlatform }}" -v:normal
+      run: msbuild EasyTask/EasyTaskAddin.sln -t:Clean -p:Configuration=${{ env.BuildConfiguration }} -p:Platform="${{ env.BuildPlatform }}" -v:normal
     # The following script preserves the globbing behavior of the CopyFiles task.
     # Refer to this transformer's documentation for an alternative that will work in simple cases.
     - name: 'Copy Files to: ${{ github.workspace }}'
