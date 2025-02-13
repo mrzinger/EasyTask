@@ -12,7 +12,7 @@ env:
 jobs:
   Phase_1:
     name: Agent job 1
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
     - name: checkout
       uses: actions/checkout@v4.1.0
