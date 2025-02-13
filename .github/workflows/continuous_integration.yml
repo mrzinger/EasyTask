@@ -36,4 +36,5 @@ jobs:
       uses: actions/upload-artifact@v4.1.0
       with:
         name: drop
+        if-no-files-found: error
         path: "**\\bin\\${{ env.BuildConfiguration }}\\*.msi"
