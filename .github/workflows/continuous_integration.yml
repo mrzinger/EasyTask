@@ -3,6 +3,8 @@ on:
   push:
     paths:
     - "$/EasyTask"
+  workflow_dispatch:
+    
 env:
   BuildConfiguration: release
   BuildPlatform: any cpu
