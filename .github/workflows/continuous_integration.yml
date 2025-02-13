@@ -26,7 +26,7 @@ jobs:
     - name: NuGet restore EasyTaskAddin
       run: nuget restore EasyTask/EasyTaskAddin.sln -Verbosity Detailed
     - name: install msbuild
-      uses: microsoft/setup-msbuild@v1.3.1
+      uses: microsoft/setup-msbuild@v2
     - name: run msbuild
       run: msbuild EasyTask/EasyTaskAddin.sln -t:Clean -p:Configuration=${{ env.BuildConfiguration }} -p:Platform="${{ env.BuildPlatform }}" -v:normal
     - name: run list dir
