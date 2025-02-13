@@ -34,4 +34,4 @@ jobs:
       uses: actions/upload-artifact@v4.1.0
       with:
         name: drop
-        path: "**\\bin\\${{ env.BuildConfiguration }}\\*.msi"
+        path: "**\\bin\\${{ env.BuildConfiguration }}\\*.*"
