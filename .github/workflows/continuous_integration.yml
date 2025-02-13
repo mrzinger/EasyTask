@@ -22,7 +22,7 @@ jobs:
         nuget-version: 4.3.0
     # NuGet does not accept glob patterns. Consider specifying files directly or using a solution.
     - name: NuGet restore
-      run: nuget restore $/EasyTask/EasyTaskAddin.sln -Verbosity Detailed
+      run: nuget restore EasyTaskAddin.sln -Verbosity Detailed
     - name: install msbuild
       uses: microsoft/setup-msbuild@v1.3.1
     - name: run msbuild
