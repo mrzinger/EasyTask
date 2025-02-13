@@ -52,10 +52,10 @@
         <RegistryValue Root="HKMU" Key="Software\Manufacturer\Product" Name="Installation path" Value="[INSTALLFOLDER]" Type="string" KeyPath="yes" />
         <RemoveFolder Id="RemoveInstallFolder" Directory="APPLICATIONFOLDER" On="uninstall" />
       </Component>
-      <Component Id="stdole.dll" Guid="7e44e452-ceea-4b89-a75b-c0dab0a5aaaa">
+      <!--Component Id="stdole.dll" Guid="7e44e452-ceea-4b89-a75b-c0dab0a5aaaa">
         <File Id="stdole.dll_PerUser" Name="stdole.dll" Source="$(var.EasyTaskAddin_TargetDir)stdole.dll" />
         <RegistryValue Root="HKMU" Key="Software\Manufacturer\Product" Name="Installation path" Value="[INSTALLFOLDER]" Type="string" KeyPath="yes" />
-      </Component>
+      </Component!-->
       <Component Id="ManagedWinapi.dll" Guid="93a749b7-0812-4ee8-afcd-a7284b8c0a65">
         <File Id="ManagedWinapi.dll_PerUser" Name="ManagedWinapi.dll" Source="$(var.EasyTaskAddin_TargetDir)ManagedWinapi.dll" />
         <RegistryValue Root="HKMU" Key="Software\Manufacturer\Product" Name="Installation path" Value="[INSTALLFOLDER]" Type="string" KeyPath="yes" />
