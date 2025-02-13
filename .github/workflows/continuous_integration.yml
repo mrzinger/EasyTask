@@ -29,8 +29,9 @@ jobs:
       uses: microsoft/setup-msbuild@v2
     - name: run msbuild
       run: msbuild EasyTask/EasyTaskAddin.sln -t:Clean -p:Configuration=${{ env.BuildConfiguration }} -p:Platform="${{ env.BuildPlatform }}" -v:normal
+    
     - name: run list dir
-      run: ls . -Recurse
+      run: ls **\*.dll -Recurse
 
     - name: 'Publish Artifact: drop'
       uses: actions/upload-artifact@v4.1.0
