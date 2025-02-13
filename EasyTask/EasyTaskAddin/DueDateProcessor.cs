@@ -60,7 +60,13 @@ namespace EasyTaskAddin
                 if (subType.Contains("date") && !subType.Contains("range"))
                 {
                     // a date (or date & time) or multiple
-                    parsedDate = resolutionValues.Select(v => DateTime.Parse(v["value"])).LastOrDefault();
+                    parsedDate = resolutionValues.Select(v => DateTime.Parse(v["value"])).FirstOrDefault();
+
+                    // If we have no year specified we naively assume that the year is the current year
+               
+                    if (resolutionValues.Count > 1 && DateTime.Today.Year!= parsedDate.Year)
+                        parsedDate = parsedDate.AddYears (DateTime.Today.Year - parsedDate.Year); 
+
                     return true;
                 }
                 else if (subType.Contains("date") && subType.Contains("range"))

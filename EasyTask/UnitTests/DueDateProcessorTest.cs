@@ -22,7 +22,7 @@ namespace EasyTaskAddin.Tests
             DueDateProcessorWrapper dueDateProcessor = new DueDateProcessorWrapper();
             DateTime testDate = DateTime.Today;
             dueDateProcessor.ParseKeywordsToDateWrapper("Today", out testDate);
-            Assert.AreEqual(testDate.ToLongDateString(), DateTime.Today.ToLongDateString());
+            Assert.AreEqual(DateTime.Today.ToLongDateString(), testDate.ToLongDateString());
         }
 
         private bool wAssert (DayOfWeek dow, DateTime date, int startDay) 
@@ -111,13 +111,13 @@ namespace EasyTaskAddin.Tests
             DateTime testDate = DateTime.Today;
 
             dueDateProcessor.ParseKeywordsToDateWrapper("New Task to do 2020-12-31", out testDate);
-            Assert.AreEqual(testDate.ToLongDateString(), "Thursday, December 31, 2020");
+            Assert.AreEqual("Thursday, December 31, 2020", testDate.ToLongDateString());
 
             dueDateProcessor.ParseKeywordsToDateWrapper("New Task to do 12 of Feb", out testDate);
-            Assert.AreEqual(testDate.ToShortDateString(), $"2/12/{DateTime.Today.Year}");
+            Assert.AreEqual($"2/12/{DateTime.Today.Year}", testDate.ToShortDateString());
 
             dueDateProcessor.ParseKeywordsToDateWrapper("New Task to do first of December", out testDate);
-            Assert.AreEqual(testDate.ToShortDateString(), $"12/1/{DateTime.Today.Year}");
+            Assert.AreEqual($"12/1/{DateTime.Today.Year}", testDate.ToShortDateString());
 
         }
 
