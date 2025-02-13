@@ -16,11 +16,6 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v4.1.0
-    - name: Use NuGet 4.3.0
-      uses: nuget/setup-nuget@v1.2.0
-      with:
-        nuget-version: 4.3.0
-    # NuGet does not accept glob patterns. Consider specifying files directly or using a solution.
     - name: NuGet restore CommonLib
       run: nuget restore CommonLib/CommonLib.sln -Verbosity Detailed
     - name: NuGet restore EasyTaskAddin
