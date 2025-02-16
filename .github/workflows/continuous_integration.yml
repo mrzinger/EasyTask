@@ -2,7 +2,7 @@ name: EasyTask/Continuous_Integration
 on:
   push:
     paths:
-    - "$/EasyTask"
+    - master
   workflow_dispatch:
     
 env:
