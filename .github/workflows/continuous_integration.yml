@@ -27,4 +27,4 @@ jobs:
       with:
         name: EasyTask${{ github.run_id }}
         if-no-files-found: error
-        path: "**/EasyTask/*/EasyTaskSetupWixUser.msi"
+        path: "**/*/EasyTaskSetupWixUser.msi"
