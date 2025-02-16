@@ -1,10 +1,8 @@
 name: EasyTask/Continuous_Integration
 on:
   push:
-    paths:
-    - main
-  workflow_dispatch:
-    
+    branches: [ "master" ]
+  workflow_dispatch:    
 env:
   BuildConfiguration: release
   BuildPlatform: any cpu
@@ -29,4 +27,4 @@ jobs:
       with:
         name: EasyTask${{ github.run_id }}
         if-no-files-found: error
-        path: "**\\*\\*.msi"
+        path: "**/*/EasyTaskSetupWixUser.msi"
