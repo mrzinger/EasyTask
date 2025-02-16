@@ -12,3 +12,13 @@ To make the dropdown work make sure that you enable this view in Outlook and the
 
 # Demo
 ![Demo gif](./EasyTaskDemo.gif)
+
+# Source code
+## Dependencies
+(WiX Toolkit v3)[https://docs.firegiant.com/wix/wix3/] is used for building installer. To make the compilation process easier (WiX toolset extension for Visual Studio 2022)[https://marketplace.visualstudio.com/items?itemName=WixToolset.WixToolsetVisualStudio2022Extension] is recommended to be installed.
+## How to compile
+To compile the the sources from source code is pretty straight forward.
+1. Open `EasyTask/EasyTaskAddin.sln`
+2. Restore Nuget packages
+3. Compile
+4. Run the installer or debug (MS Outlook 2022 or earlier is requried)
