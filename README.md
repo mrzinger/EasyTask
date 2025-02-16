@@ -7,6 +7,7 @@ You can specify when you want the task due date by using natural language in the
 Anyway you can look at the code if interested.
 Check out `OutlookControlsExtensions` for how to extend standard Outlook edit box functionality with extra features like filtered drop down. 
 To make the dropdown work make sure that you enable this view in Outlook and then restart it. 
+
 ![Untitled](https://github.com/user-attachments/assets/19bbaf48-3aa2-4174-bc92-a5fb608284c4)
 
 # Demo
