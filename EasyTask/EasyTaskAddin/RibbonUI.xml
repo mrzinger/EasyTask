@@ -17,9 +17,9 @@
           <button id="settingsButton" onAction="OnSettingsButton"
         getScreentip="GetDescription" getLabel="GetLabel" getImage="LoadImage"
         tag ="image=settings_icon;label=SettingsButtonLabel;description=SettingsDescription"/>
-          <button id="updateButton" onAction="OnUpdateButton" 
+          <!--button id="updateButton" onAction="OnUpdateButton" 
                   getScreentip="GetDescription" getLabel="GetLabel" getImage="LoadImage"
-                  tag ="image=update_icon;label=UpdateButtonLabel;description=UpdateButtonDescription"/>
+                  tag ="image=update_icon;label=UpdateButtonLabel;description=UpdateButtonDescription"/-->
           
         </group>
       </tab>
