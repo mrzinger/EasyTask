@@ -119,6 +119,9 @@ namespace EasyTaskAddin.Tests
             dueDateProcessor.ParseKeywordsToDateWrapper("New Task to do first of December", out testDate);
             Assert.AreEqual($"12/1/{DateTime.Today.Year}", testDate.ToShortDateString());
 
+            dueDateProcessor.ParseKeywordsToDateWrapper("New Task to do thirteenth of March", out testDate);
+            Assert.AreEqual($"3/13/{DateTime.Today.Year}", testDate.ToShortDateString());
+
         }
 
     }
