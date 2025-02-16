@@ -170,7 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\EasyTask.ico" />
-    <Content Include="TODO.txt" />
+    <Content Include="IconsReference.html" />
     <None Include="Resources\about_btn.png" />
     <None Include="Resources\bug_btn.png" />
     <Content Include="Resources\program.ico" />
