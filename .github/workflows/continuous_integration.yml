@@ -2,7 +2,7 @@ name: EasyTask/Continuous_Integration
 on:
   push:
     paths:
-    - master
+    - main
   workflow_dispatch:
     
 env:
