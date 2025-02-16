@@ -21,4 +21,4 @@ To compile the the sources from source code is pretty straight forward.
 1. Open `EasyTask/EasyTaskAddin.sln`
 2. Restore Nuget packages
 3. Compile
-4. Run the installer or debug (MS Outlook 2022 or earlier is requried)
+4. Run the installer or debug (MS Outlook 2021 or earlier is requried)
