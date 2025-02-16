@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Easy Task Outlook Add-in")]
-[assembly: AssemblyDescription("EasyTask Outlook Add-in extends the standard task functionality in Outlook (2007–2021) by allowing you to specify due dates and categories directly within the task name. This streamlines task management by enabling natural language input to set due dates.")]
+[assembly: AssemblyDescription("EasyTask Outlook Add-in extends the standard task functionality in Outlook (2007–2021) by allowing you to specify due dates and categories directly within the task name. This streamlines task management by enabling natural language input to set due dates and categories.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Source code: https://github.com/mrzinger/EasyTask")]
 [assembly: AssemblyProduct("EasyTask Outlook Add-in")]
