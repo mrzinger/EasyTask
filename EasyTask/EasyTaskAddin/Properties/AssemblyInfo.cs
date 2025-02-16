@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("EasyTaskAddin")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Easy Task Outlook Add-in")]
+[assembly: AssemblyDescription("EasyTask Outlook Add-in extends the standard task functionality in Outlook (2007–2021) by allowing you to specify due dates and categories directly within the task name. This streamlines task management by enabling natural language input to set due dates.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("EasyTaskAddin")]
-[assembly: AssemblyCopyright("")]
+[assembly: AssemblyCompany("Source code: https://github.com/mrzinger/EasyTask")]
+[assembly: AssemblyProduct("EasyTask Outlook Add-in")]
+[assembly: AssemblyCopyright("License: MIT")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.0.5.0")]
-[assembly: AssemblyFileVersion("0.0.5.0")]
+[assembly: AssemblyVersion("0.3.1.0")]
+[assembly: AssemblyFileVersion("0.3.1.0")]
